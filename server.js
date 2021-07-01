@@ -22,6 +22,10 @@ app.get('/api/animals/:id', (req, res) => {
     res.send(404);
   }
 });
+function findById(id, animalsArray) {
+  const result = animalsArray.filter((animal) => animal.id === id)[0];
+  return result;
+}
 function filterByQuery(query, animalsArray) {
   let personalityTraitsArray = [];
   // Note that we save the animalsArray as filteredResults here:
