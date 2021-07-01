@@ -26,6 +26,10 @@ function findById(id, animalsArray) {
   const result = animalsArray.filter((animal) => animal.id === id)[0];
   return result;
 }
+app.post('/api/animals', (req, res) => {
+  console.log(req.body);
+  res.json(req.body);
+});
 function filterByQuery(query, animalsArray) {
   let personalityTraitsArray = [];
   // Note that we save the animalsArray as filteredResults here:
