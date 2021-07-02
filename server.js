@@ -1,12 +1,18 @@
 const { animals } = require('./data/animal');
 const PORT = process.env.PORT || 3001;
-
+const fs = require('fs');
+const path = require('path');
 const express = require('express');
 const app = express();
 // parse incoming string or array data
 app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
+app.use(express.static('public'));
+//and all we have to do is tell them where to find the file we want our server to read and send back to the client.
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
+});
 app.listen(PORT, () => {
   console.log(`API server now on port ${PORT}!`);
 });
@@ -15,6 +21,7 @@ app.get('/api/animals', (req, res) => {
   let results = animals;
   if (req.query) {
     results = filterByQuery(req.query, results);
+    console.log('req.query', req.query);
   }
   res.json(results);
 });
@@ -31,17 +38,41 @@ function findById(id, animalsArray) {
   return result;
 }
 function createNewAnimal(body, animalsArray) {
-  console.log(body);
-  // our function's main code will go here!
+  const animal = body;
+  animalsArray.push(animal);
+  fs.writeFileSync(
+    path.join(__dirname, './data/animals.json'),
+    JSON.stringify({ animals: animalsArray }, null, 2)
+  );
+  return animal;
+}
+app.post('/api/animals', (req, res) => {
   // set id based on what the next index of the array will be
   req.body.id = animals.length.toString();
 
-  res.json(req.body);
-}
-app.post('/api/animals', (req, res) => {
-  console.log(req.body);
-  res.json(req.body);
+  // if any data in req.body is incorrect, send 400 error back
+  if (!validateAnimal(req.body)) {
+    res.status(400).send('The animal is not properly formatted.');
+  } else {
+    const animal = createNewAnimal(req.body, animals);
+    res.json(animal);
+  }
 });
+function validateAnimal(animal) {
+  if (!animal.name || typeof animal.name !== 'string') {
+    return false;
+  }
+  if (!animal.species || typeof animal.species !== 'string') {
+    return false;
+  }
+  if (!animal.diet || typeof animal.diet !== 'string') {
+    return false;
+  }
+  if (!animal.personalityTraits || !Array.isArray(animal.personalityTraits)) {
+    return false;
+  }
+  return true;
+}
 function filterByQuery(query, animalsArray) {
   let personalityTraitsArray = [];
   // Note that we save the animalsArray as filteredResults here:
