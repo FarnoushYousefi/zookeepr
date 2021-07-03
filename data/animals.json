@@ -110,13 +110,66 @@
       "id": "10"
     },
     {
-      "name": "Larry",
+      "name": "larry",
       "species": "lemur",
-      "diet": "omnivore",
+      "diet": "herbivore",
+      "personalityTraits": [],
+      "id": "11"
+    },
+    {
+      "name": "asdada",
+      "species": "asdada",
+      "diet": "folivore",
+      "personalityTraits": [
+        "anxious"
+      ],
+      "id": "12"
+    },
+    {
+      "name": "t",
+      "species": "t2",
+      "diet": "herbivore",
+      "personalityTraits": [
+        "zany"
+      ],
+      "id": "13"
+    },
+    {
+      "name": "larry",
+      "species": "lemur",
+      "diet": "herbivore",
+      "personalityTraits": [
+        "zany"
+      ],
+      "id": "14"
+    },
+    {
+      "name": "larry",
+      "species": "lemur",
+      "diet": "herbivore",
       "personalityTraits": [
         "hungry"
       ],
-      "id": "11"
+      "id": "15"
+    },
+    {
+      "name": "larry",
+      "species": "lemur",
+      "diet": "herbivore",
+      "personalityTraits": [
+        "zany"
+      ],
+      "id": "16"
+    },
+    {
+      "name": "larry",
+      "species": "lemur",
+      "diet": "folivore",
+      "personalityTraits": [
+        "anxious",
+        "loving"
+      ],
+      "id": "17"
     }
   ]
 }
