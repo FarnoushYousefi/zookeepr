@@ -170,6 +170,31 @@
         "loving"
       ],
       "id": "17"
+    },
+    {
+      "name": "larry",
+      "species": "lemur",
+      "diet": "folivore",
+      "personalityTraits": [
+        "hungry"
+      ],
+      "id": "18"
+    },
+    {
+      "name": "larry",
+      "species": "lemur",
+      "diet": "herbivore",
+      "personalityTraits": [
+        "zany"
+      ],
+      "id": "19"
+    },
+    {
+      "name": "larry",
+      "species": "lemur",
+      "diet": "folivore",
+      "personalityTraits": [],
+      "id": "20"
     }
   ]
 }
